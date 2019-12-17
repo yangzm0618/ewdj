@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!--允许全屏-->
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <link rel="stylesheet" type="text/css" href="css/enet.css"/>
+    <!-- <link rel="stylesheet" href="css/index.css"> -->
+     <!-- import CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link href="datepicker/dist/css/datepicker.css" rel="stylesheet" type="text/css">
+    <link href="layui/css/layui.mobile.css" rel="stylesheet" type="text/css">
+    <link href="layui/css/layui.css" rel="stylesheet" type="text/css">
+
+      <!-- import Vue before Element -->
+  <!-- <script src="js/vue.js"></script> -->
+  <!-- import JavaScript -->
+    <!-- <script src="js/index.js"></script> -->
+     <!-- import Vue before Element -->
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <!-- import JavaScript -->
+  <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=cHvUd52Dq7uv1RiS6zGTRK99Nz2g0Nmt"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/flexible_css.debug.js"></script>
+    <script type="text/javascript" src="js/flexible.debug.js"></script>
+    <title>E网打尽</title>
+</head>
+
+<body>
+<div id="app" class="item-section">
+    <div class="item-section_header">
+        <div class='enet-chart-nav-back' onclick='backToMain()' style="float: left;">
+        </div>
+        <div class='enet-chart-nav-back-search' style="float: right;margin-right: 0.25rem;">
+                <el-button type="primary" @click="showSearchInfo()" style="margin-top: 0.25rem;" icon="el-icon-search" circle></el-button>
+        </div>
+        
+    </div>
+    
+    <el-form ref="form" :model="form" label-width="80px" v-if="searchFlag">
+        <el-form-item style="margin-right: 20px;">
+                <el-input v-model="form.name" placeholder="任务名称"></el-input>
+              </el-form-item>
+              <el-form-item style="margin-right: 20px;">
+                <el-col :span="11">
+                  <el-date-picker type="date" placeholder="开始时间" v-model="form.date1" style="width: 100%;"></el-date-picker>
+                </el-col>
+                <el-col class="line" :span="1">-</el-col>
+                <el-col :span="11">
+                  <el-date-picker placeholder="结束时间" v-model="form.date2" style="width: 100%;"></el-date-picker>
+                </el-col>
+              </el-form-item>
+            <el-form-item style="text-align: center;">
+                <el-button type="warning" @click="onSubmit">查询</el-button>
+                <el-button type="success">取消</el-button>
+              </el-form-item>
+          </el-form>
+    <el-tabs type="border-card" style="height:100%;" v-if="hideIndex">
+            <el-tab-pane :label="allMess">
+                    <div class="item-section_calendar" style="width:98%">
+                            <el-card class="box-card" v-for="o in 10" :key="o" style="margin: 5px;">
+                                <div  class="text item">
+                                        <el-row>
+                                                <el-col :span="4"><div>
+                                                        <img src="img/民警位置.png" style="float:left">
+                                                </div></el-col>
+                                                <el-col :span="12"><div>
+                                                        <div>任务描述</div>
+                                                        <div style="color:#969696;">文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</div>
+                                                </div></el-col>
+                                                <el-col :span="8"><div>
+                                                        <el-row>
+                                                                <el-button type="warning" size="mini" round>反馈</el-button>
+                                                              </el-row>
+                                                        <time class="time">2019-12-13 10:26</time>
+                                                </div></el-col>
+                                              </el-row>
+                                </div>
+                              </el-card>
+                        </div>
+            </el-tab-pane>
+            <el-tab-pane label="待反馈(28条)">
+                    <div class="item-section_calendar" style="width:98%">
+                            <el-card class="box-card" v-for="o in 6" :key="o" style="margin: 5px;">
+                                <div  class="text item">
+                                        <el-row>
+                                                <el-col :span="4"><div>
+                                                        <img src="img/民警位置.png" style="float:left">
+                                                </div></el-col>
+                                                <el-col :span="12"><div>
+                                                        <div>任务描述</div>
+                                                        <div style="color:#969696;">文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</div>
+                                                </div></el-col>
+                                                <el-col :span="8"><div>
+                                                        <el-row>
+                                                                <el-button type="warning" size="mini" round @click="fankui()">反馈</el-button>
+                                                              </el-row>
+                                                        <time class="time">2019-12-13 10:26</time>
+                                                </div></el-col>
+                                              </el-row>
+                                </div>
+                              </el-card>
+                        </div>
+            </el-tab-pane>
+            <el-tab-pane label="已反馈(58条)">
+                    <div class="item-section_calendar" style="width:98%">
+                            <el-card class="box-card" v-for="o in 2" :key="o" style="margin: 5px;">
+                                <div  class="text item">
+                                        <el-row>
+                                                <el-col :span="4"><div>
+                                                        <img src="img/民警位置.png" style="float:left">
+                                                </div></el-col>
+                                                <el-col :span="12"><div>
+                                                        <div>任务描述</div>
+                                                        <div style="color:#969696;">文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</div>
+                                                </div></el-col>
+                                                <el-col :span="8"><div>
+                                                        <el-row>
+                                                                <el-button type="warning" size="mini" round>反馈</el-button>
+                                                              </el-row>
+                                                        <time class="time">2019-12-13 10:26</time>
+                                                </div></el-col>
+                                              </el-row>
+                                </div>
+                              </el-card>
+                        </div>
+            </el-tab-pane>
+          </el-tabs>
+
+          <div v-show="!hideIndex" id="drawMap" style="height: 300px;">
+ 
+         </div>
+          <el-container v-if="!hideIndex">
+               
+                <el-main>
+                        <div  style="width:100%;margin: 0;">
+                                  <el-card class="box-card" style="margin: 5px;">
+                                        <div slot="header" class="clearfix">
+                                                <el-row>
+                                                        <el-col :span="4"><div>
+                                                                <img src="img/民警位置.png" style="float:left">
+                                                        </div></el-col>
+                                                        <el-col :span="12"><div>
+                                                                <div>任务描述</div>
+                                                                <div style="color:#969696;">文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</div>
+                                                        </div></el-col>
+                                                      </el-row>
+                                        </div>
+                                        <div v-for="o in 4" :key="o" class="text item">
+                                          {{'列表内容 ' + o }}
+                                        </div>
+                                      </el-card>
+
+                                      <el-card class="box-card"  style="margin: 5px;">
+                                        <div  class="text item">
+                                                <span>反馈</span>
+
+                                                <el-form ref="form" :model="form" label-width="80px">
+                                                        <el-form-item label="">
+                                                          <el-input v-model="form.name"></el-input>
+                                                        </el-form-item>
+                                                        <el-form-item label="">
+                                                          <el-select v-model="form.region" placeholder="请选择活动区域">
+                                                            <el-option label="区域一" value="shanghai"></el-option>
+                                                            <el-option label="区域二" value="beijing"></el-option>
+                                                          </el-select>
+                                                        </el-form-item>
+                                                        <el-form-item style="text-align: center;">
+                                                                <el-button type="warning" @click="onSubmit">查询</el-button>
+                                                                <el-button type="success">取消</el-button>
+                                                              </el-form-item>
+                                                      </el-form>
+                                        </div>
+                                      </el-card>
+                            </div>
+                </el-main>
+              </el-container>
+
+  
+</div>
+<script src="layui/layui.all.js"></script>
+<script src="datepicker/dist/js/datepicker.min.js"></script>
+<script src="datepicker/dist/js/i18n/datepicker.en.js"></script>
+<script src="js/common.js"></script>
+<!-- <script src="js/ewm1.js"></script> -->
+<script>
+    new Vue({
+      el: '#app',
+      data: function() {
+        return { 
+            form: {
+          name: '',
+          region:'',
+          date1: '',
+          date2: ''
+        },
+        hideIndex:true,
+        searchFlag:false,
+        allMess:'全部（13条）'
+        }
+      },
+      mounted(){
+      // 百度地图API功能
+        var map = new BMap.Map("drawMap");    // 创建Map实例33.6162703584,119.0224348454
+	map.centerAndZoom(new BMap.Point(119.022, 33.616), 11);  // 初始化地图,设置中心点坐标和地图级别
+	//添加地图类型控件
+	map.addControl(new BMap.MapTypeControl({
+		mapTypes:[
+            BMAP_NORMAL_MAP,
+            BMAP_HYBRID_MAP
+        ]}));	  
+	map.setCurrentCity("淮安");          // 设置地图显示的城市 此项是必须设置的
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+      },
+      methods:{
+        fankui(){
+           this.hideIndex=false;
+         
+        },
+        showSearchInfo(){
+           this.searchFlag=!this.searchFlag;
+        }
+      }
+    })
+  </script>
+  <style>
+.el-tabs__content {
+    overflow: scroll;
+    position: relative;
+    height: 100%;
+}
+
+.el-form-item__content {
+    margin-left: 20px!important;
+}
+.el-select {
+    width: 100%;
+}
+</style>
+</body>
+</html>

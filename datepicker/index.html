@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Air Datepicker|跨浏览器jQuery日期选择器插件|DEMO_jQuery之家-自由分享jQuery、html5、css3的插件库</title>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link href="dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,300,500&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<script src="dist/js/datepicker.js"></script>
+	<script src="dist/js/i18n/datepicker.en.js"></script>
+</head>
+<body>
+<header class="htmleaf-header">
+	<h1>Air Datepicker|跨浏览器jQuery日期选择器插件 <span>AIR DATEPICKER - A lightweight cross-browser jQuery datepicker</span></h1>
+	<div class="htmleaf-links">
+		<a class="htmleaf-icon icon-htmleaf-home-outline" href="http://www.htmleaf.com/" title="jQuery之家" target="_blank"><span> jQuery之家</span></a>
+		<a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="http://www.htmleaf.com/jQuery/Calendar-Date-Time-picker/201512182919.html" title="返回下载页" target="_blank"><span> 返回下载页</span></a>
+	</div>
+</header>
+<div class="wrapper">
+<main role="main" class="main">
+	<div class="container">
+		<p class="-text-center-">
+			<div class="datepicker-here datepicker-promo"></div>
+<script>var $promo = $('.datepicker-promo');
+$promo.datepicker({
+	language: 'en'
+})</script>
+		</p>
+
+
+
+<article><h2 id="examples">Examples</h2><h3>Initialization with default options</h3><div class="example"><div class="example--label">Example</div><div class="example-content"><input type="text" data-language="en" class="datepicker-here"></div><pre class="example-code"><code class="html">&lt;input type='text' class='datepicker-here' data-language='en' /&gt;</code></pre></div><h3>Selecting multiple dates</h3><p>Pass parameter<span class="example-inline"><code class="js">{multipleDates: true}</code></span>for selection of multiple dates. If you want to limit the number of selected dates, pass the desired number<span class="example-inline"><code class="js">{multipleDates: 3}</code></span>.</p><div class="example"><div class="example--label">Example</div><div class="example-content"><input type="text" data-multiple-dates="3" data-multiple-dates-separator=", " data-position="top left" data-language="en" class="datepicker-here"></div><pre class="example-code"><code class="html">&lt;input type=&quot;text&quot;
+	   class=&quot;datepicker-here&quot;
+	   data-language='en'
+	   data-multiple-dates=&quot;3&quot;
+	   data-multiple-dates-separator=&quot;, &quot;
+	   data-position='top left'/&gt;</code></pre></div><h3>Permanently visible calendar</h3><p>Initialize plugin on non text input element, such as<span class="example-inline"><code class="html">&lt;div&gt; …  &lt;/div&gt;</code></span>,or pass the parameter<span class="example-inline"><code class="js">{inline: true}</code></span>.</p><div class="example"><div class="example--label">Example</div><div class="example-content"><div data-language="en" class="datepicker-here"></div></div><pre class="example-code"><code class="html">&lt;div class=&quot;datepicker-here&quot; data-language='en'&gt;&lt;/div&gt;</code></pre></div><h3>Month selection</h3><div class="example"><div class="example--label">Example</div><div class="example-content"><input type="text" data-min-view="months" data-view="months" data-date-format="MM yyyy" data-language="en" class="datepicker-here"></div><pre class="example-code"><code class="html">&lt;input type=&quot;text&quot;
+	   class=&quot;datepicker-here&quot;
+	   data-language='en'
+	   data-min-view=&quot;months&quot;
+	   data-view=&quot;months&quot;
+	   data-date-format=&quot;MM yyyy&quot; /&gt;</code></pre></div><h3>Minimum and maximum dates</h3><p>To limit date selection, use<span class="example-inline"><code class="js">minDate</code></span>and<span class="example-inline"><code class="js">maxDate</code></span>, they must receive JavaScript Date object.</p><div class="example"><div class="example--label">Example</div><div class="example-content"><input id="minMaxExample" type="text"><script>$('#minMaxExample').datepicker({
+	language: 'en',
+	minDate: new Date() // Now can select only dates, which goes after today
+})</script></div><pre class="example-code"><code class="js">$('#minMaxExample').datepicker({
+	language: 'en',
+	minDate: new Date() // Now can select only dates, which goes after today
+})
+</code></pre></div><h3 id="example-range">Range of dates</h3><p>Use<span class="example-inline"><code>{range: true}</code></span>for choosing range of dates. As dates separator<span class="example-inline"><code>multipleDatesSeparator</code></span>will be used.</p><div class="example"><div class="example--label">Example</div><div class="example-content"><input type="text" data-range="true" data-multiple-dates-separator=" - " data-language="en" class="datepicker-here"></div><pre class="example-code"><code class="html">&lt;input type=&quot;text&quot;
+	data-range=&quot;true&quot;
+	data-multiple-dates-separator=&quot; - &quot;
+	data-language=&quot;en&quot;
+	class=&quot;datepicker-here&quot;/&gt;
+
+</code></pre></div><h3 id="example-disabled-days">Disable days of week</h3><p>For disabling days, use<span class="example-inline"><code>onRenderCell</code></span>.</p><div class="example"><div class="example--label">Example</div><div class="example-content"><input type="text" id="disabled-days"><script>// Make Sunday and Saturday disabled
+var disabledDays = [0, 6];
+
+$('#disabled-days').datepicker({
+	language: 'en',
+	onRenderCell: function (date, cellType) {
+		if (cellType == 'day') {
+			var day = date.getDay(),
+				isDisabled = disabledDays.indexOf(day) != -1;
+			return {
+				disabled: isDisabled
+			}
+		}
+	}
+})</script></div><pre class="example-code"><code class="js">// Make Sunday and Saturday disabled
+var disabledDays = [0, 6];
+
+$('#disabled-days').datepicker({
+	language: 'en',
+	onRenderCell: function (date, cellType) {
+		if (cellType == 'day') {
+			var day = date.getDay(),
+				isDisabled = disabledDays.indexOf(day) != -1;
+
+			return {
+				disabled: isDisabled
+			}
+		}
+	}
+})
+</code></pre></div><h3>Custom cells content</h3><p>Air Datepicker allows you to change contents of cells like you want. You could use<span class="example-inline"><code>onRenderCell</code></span>for this purpose.
+Lets add extra elements to several dates, and show `lorem` text when selecting them.</p><div class="example"><div class="example--label">Example</div><div class="example-content"><div class="list-inline"><div><div id="custom-cells"></div></div><div id="custom-cells-events"><strong></strong><p></p></div></div><script>var eventDates = [1, 10, 12, 22],
+		$picker = $('#custom-cells'),
+		$content = $('#custom-cells-events'),
+		sentences = [
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ita prorsus, inquam; Si enim ad populum me vocas, eum. Ita prorsus, inquam; Nonne igitur tibi videntur, inquit, mala? Hunc vos beatum; Idemne, quod iucunde? ',
+			'Ratio quidem vestra sic cogit. Illi enim inter se dissentiunt. Tu vero, inquam, ducas licet, si sequetur; Non semper, inquam; ',
+			'Duo Reges: constructio interrete. A mene tu? Ea possunt paria non esse. Est, ut dicis, inquam. Scaevolam M. Quid iudicant sensus? ',
+			'Poterat autem inpune; Qui est in parvis malis. Prave, nequiter, turpiter cenabat; Ita credo. '
+		]
+$picker.datepicker({
+	language: 'en',
+	onRenderCell: function (date, cellType) {
+		var currentDate = date.getDate();
+		if (cellType == 'day' && eventDates.indexOf(currentDate) != -1) {
+			return {
+				html: currentDate + '<span class="dp-note"></span>'
+			}
+		}
+	},
+	onSelect: function onSelect(fd, date) {
+		var title = '', content = ''
+		if (date && eventDates.indexOf(date.getDate()) != -1) {
+			title = fd;
+			content = sentences[Math.floor(Math.random() * eventDates.length)];
+		}
+		$('strong', $content).html(title)
+		$('p', $content).html(content)
+	}
+})
+var currentDate = new Date();
+$picker.data('datepicker').selectDate(new Date(currentDate.getFullYear(), currentDate.getMonth(), 10))</script></div><pre class="example-code"><code class="js">var eventDates = [1, 10, 12, 22],
+	$picker = $('&#35;custom-cells'),
+	$content = $('&#35;custom-cells-events'),
+	sentences = [ … ];
+
+$picker.datepicker({
+	language: 'en',
+	onRenderCell: function (date, cellType) {
+		var currentDate = date.getDate();
+		// Add extra element, if `eventDates` contains `currentDate`
+		if (cellType == 'day' &amp;&amp; eventDates.indexOf(currentDate) != -1) {
+			return {
+				html: currentDate + '&lt;span class=&quot;dp-note&quot;&gt;&lt;/span&gt;'
+			}
+		}
+	},
+	onSelect: function onSelect(fd, date) {
+		var title = '', content = ''
+		// If date with event is selected, show it
+		if (date &amp;&amp; eventDates.indexOf(date.getDate()) != -1) {
+			title = fd;
+			content = sentences[Math.floor(Math.random() * eventDates.length)];
+		}
+		$('strong', $content).html(title)
+		$('p', $content).html(content)
+	}
+})
+
+// Select initial date from `eventDates`
+var currentDate = currentDate = new Date();
+$picker.data('datepicker').selectDate(new Date(currentDate.getFullYear(), currentDate.getMonth(), 10))
+</code></pre></div>
+</article>
+
+	</div>
+</main>
+</div>
+
+		<footer class="related">
+		    <h3>如果你喜欢这个插件，那么你可能也喜欢:</h3>
+		    <a href="http://www.htmleaf.com/jQuery/Calendar-Date-Time-picker/201512052867.html">
+			  <img src="related/1.jpg" width="300" alt="基于Bootstrap3的带记事功能的全年日历插件"/>
+			  <h3>基于Bootstrap3的带记事功能的全年日历插件</h3>
+			</a>
+			<a href="http://www.htmleaf.com/jQuery/Calendar-Date-Time-picker/201504251737.html">
+			  <img src="related/2.jpg" width="300" alt="jQuery可选择日期范围的日期选择器插件"/>
+			  <h3>jQuery可选择日期范围的日期选择器插件</h3>
+			</a>
+		</footer>
+	
+	
+	<script>
+	var $code = $('code');
+	$code.each(function (i, el) {
+		hljs.highlightBlock(el);
+	})
+	</script>
+</body>
+</html>

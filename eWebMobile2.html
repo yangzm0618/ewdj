@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head xmlns="http://www.w3.org/1999/html">
+    <meta charset="utf-8">
+    <!--允许全屏-->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/enet1.css"/>
+    <link href="layui/css/layui.mobile.css" rel="stylesheet" type="text/css">
+    <link href="layui/css/layui.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=3.0&ak=wo0Rvg7jWAngiLCBv5GWhNtHkYOOGauj"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/flexible_css.debug.js"></script>
+    <script type="text/javascript" src="js/flexible.debug.js"></script>
+    <title>E网打尽</title>
+</head>
+
+<body>
+<div class="item-section_header">
+    <div class='enet-chart-nav-back' onclick='backPre()'></div>
+</div>
+<div class="enet-cw-info">
+    <img src="img/头像默认-icon.png" class="enet-cw-info-img" id="imginfo">
+    <div class="enet-cw-info-div">
+        <div class="enet-cw-info-title">布控信息</div>
+        <div class="enet-cw-info-con" id="bkinfo">
+        </div>
+        <div class="enet-cw-info-title">触网信息</div>
+        <div class="enet-cw-info-con" id="cwinfo">
+        </div>
+    </div>
+</div>
+<div class="enet-chart-info" onclick="showInfo();">
+    <img src="img/信息-icon.png" class="enet-chart-info-img">
+    <div>信息</div>
+</div>
+<div id="container"></div>
+<script src="layui/layui.all.js"></script>
+<script src="js/common.js"></script>
+<script src="js/ewm2.js"></script>
+
+</body>
+</html>
